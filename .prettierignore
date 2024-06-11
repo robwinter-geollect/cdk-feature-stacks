@@ -1,0 +1,7 @@
+# Ignore artifacts:
+.github
+.husky
+tsconfig.json
+cdk.out
+node_modules
+template.yaml
