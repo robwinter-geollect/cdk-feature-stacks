@@ -17,7 +17,7 @@
   "context": {
     "product": "templateProduct",
     "appName": "templateApp",
-    "repository": "Geollect/cdk-infrastructure-template",
+    "repository": "robwinter-geollect/cdk-feature-stacks",
     "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/core:target-partitions": ["aws", "aws-cn"],
