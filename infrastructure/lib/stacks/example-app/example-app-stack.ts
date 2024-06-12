@@ -5,7 +5,7 @@ import { DockerImageAsset } from 'aws-cdk-lib/aws-ecr-assets';
 import { GeollectStack, GeollectStackProps } from '../geollect-stack';
 
 
-const rootPath = path.posix.join(__dirname, '..', '..', '..', '..', '..', '..', '..');
+const rootPath = path.posix.join(__dirname, '..', '..', '..', '..');
 
 type Props = GeollectStackProps
 
@@ -13,8 +13,7 @@ export class HelloWorldStack extends GeollectStack {
   constructor(scope: Construct, id: string, { environmentId, ...props }: Props) {
     super(scope, id, { environmentId, ...props });
 
-    const vpc = aws_ec2.Vpc.fromLookup(this, 'Vpc', {
-      isDefault: true,
+    const vpc = new aws_ec2.Vpc(this, 'HelloWorldVpc', {
     });
     const cluster = new aws_ecs.Cluster(this, 'HelloWorldCluster', {
       vpc,
