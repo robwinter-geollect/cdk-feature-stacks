@@ -1,0 +1,9 @@
+version: '3'
+services:
+  hello-world:
+    build:
+      context: ./
+      dockerfile: ./projects/hello_world/Dockerfile
+    volumes:
+      - $HOME/.aws/:/home/geollect/.aws/
+    image: ${ECR_REPO}:HelloWorld
