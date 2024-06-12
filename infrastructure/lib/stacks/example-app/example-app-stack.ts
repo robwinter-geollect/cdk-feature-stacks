@@ -19,7 +19,6 @@ export class HelloWorldStack extends GeollectStack {
     const cluster = new aws_ecs.Cluster(this, 'HelloWorldCluster', {
       vpc,
     });
-
     const taskDefinition = new aws_ecs.FargateTaskDefinition(this, 'HelloWorldTaskDefintion');
 
     taskDefinition.addContainer('HelloWorldContainer', {
