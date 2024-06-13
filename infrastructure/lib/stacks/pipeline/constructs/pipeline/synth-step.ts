@@ -36,7 +36,7 @@ export class SynthStep extends CodeBuildStep {
         }),
       },
       commands: [`bash ${path.join(projectDir, 'build.sh')}`],
-      primaryOutputDirectory: path.join('cdk.out'),
+      primaryOutputDirectory: path.join(projectDir, 'cdk.out'),
     });
   }
 }
