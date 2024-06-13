@@ -10,7 +10,7 @@
     "test": "jest",
     "cdk": "cdk",
     "lint": "eslint .",
-    "prepare": "is-ci || (husky install .husky)"
+    "prepare": "is-ci || (cd .. && husky install .husky)"
   },
   "lint-staged": {
     "{bin,lib,test}/**/*.{js,ts,jsx,tsx}": [

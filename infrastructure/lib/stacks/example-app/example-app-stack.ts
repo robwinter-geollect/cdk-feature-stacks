@@ -1,3 +1,20 @@
+// import { Code, Function as LambdaFunction, Runtime } from 'aws-cdk-lib/aws-lambda';
+// import { Construct } from 'constructs';
+// import { GeollectStack, GeollectStackProps } from '../geollect-stack';
+
+// type Props = GeollectStackProps;
+
+// export class HelloWorldStack extends GeollectStack {
+//   constructor(scope: Construct, id: string, { environmentId, ...props }: Props) {
+//     super(scope, id, { environmentId, ...props });
+
+//     new LambdaFunction(this, 'ExampleFunction', {
+//       code: Code.fromInline('exports.handler = async function(event, context) { return "hello world"; }'),
+//       handler: 'index.handler',
+//       runtime: Runtime.NODEJS_18_X,
+//     });
+//   }
+// }
 import path from 'path';
 import { aws_ec2, aws_ecs } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
@@ -6,25 +23,28 @@ import { GeollectStack, GeollectStackProps } from '../geollect-stack';
 
 
 const rootPath = path.posix.join(__dirname, '..', '..', '..', '..');
-
+const file = path.posix.join('projects', 'hello_world');
 type Props = GeollectStackProps
+
+const directory = path.posix.join(rootPath, file);
 
 export class HelloWorldStack extends GeollectStack {
   constructor(scope: Construct, id: string, { environmentId, ...props }: Props) {
     super(scope, id, { environmentId, ...props });
-
     const vpc = new aws_ec2.Vpc(this, 'HelloWorldVpc', {
     });
+
     const cluster = new aws_ecs.Cluster(this, 'HelloWorldCluster', {
       vpc,
     });
-    const taskDefinition = new aws_ecs.FargateTaskDefinition(this, 'HelloWorldTaskDefintion');
 
+    const imageAsset = new DockerImageAsset(this, 'HelloWorldImage', {
+      directory,
+    });
+
+    const taskDefinition = new aws_ecs.FargateTaskDefinition(this, 'HelloWorldTaskDefintion');
     taskDefinition.addContainer('HelloWorldContainer', {
-      image: aws_ecs.ContainerImage.fromDockerImageAsset(new DockerImageAsset(this, 'HelloWorldImage', {
-        directory: rootPath,
-        file: path.posix.join('projects', 'hello_world', 'Dockerfile')
-      })),
+      image: aws_ecs.ContainerImage.fromDockerImageAsset(imageAsset),
       memoryLimitMiB: 512,
       cpu: 256,
     });
@@ -32,8 +52,8 @@ export class HelloWorldStack extends GeollectStack {
     new aws_ecs.FargateService(this, 'HelloWorldService', {
       cluster,
       taskDefinition,
-      // desiredCount: 1,
-      // assignPublicIp: true,
-    });
+      desiredCount: 1,
+    }
+    )
   }
 }
