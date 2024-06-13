@@ -10,6 +10,7 @@ const environmentId = app.node.getContext(CTX_ENV_ID);
 const product = app.node.getContext(CTX_PRODUCT);
 const appName = app.node.getContext(CTX_APP_NAME);
 
+
 new PipelineStack(app, `${environmentId}${product}${appName}PipelineCDKStack`, {
   stackName: `${environmentId}-${product}-${appName}-cicd`,
   description: `Contains resources for build and deployment of ${product} ${appName}`,
