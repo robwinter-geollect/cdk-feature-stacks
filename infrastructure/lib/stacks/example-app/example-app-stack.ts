@@ -7,9 +7,9 @@ import { GeollectStack, GeollectStackProps } from '../geollect-stack';
 
 const rootPath = path.posix.join(__dirname, '..', '..', '..', '..');
 const file = path.posix.join('projects', 'hello_world');
-type Props = GeollectStackProps
-
 const directory = path.posix.join(rootPath, file);
+
+type Props = GeollectStackProps
 
 export class HelloWorldStack extends GeollectStack {
   constructor(scope: Construct, id: string, { environmentId, ...props }: Props) {

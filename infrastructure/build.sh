@@ -3,7 +3,7 @@
 # Fail build on any error
 set -eu
 
-cd ${PROJECT_DIR}
+cd ${PROJECT_DIR/infrastructure}
 npm ci
 npm run lint
 npm run test
