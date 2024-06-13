@@ -6,7 +6,8 @@ import { CTX_BRANCH, CTX_ENV_ID, CTX_REPOSITORY } from '../../../../context';
 import { FEATURE_ENV_CONFIG_ENV_VAR_NAME, getEnvConfig, isFeatureEnvId } from '../../../../environment';
 
 // This path needs to be relative from the root of the source code repository
-const projectDir = path.join('.');
+const projectDir = path.join('../');
+
 
 const createSourceConnection = (scope: Construct) =>
   CodePipelineSource.connection(scope.node.getContext(CTX_REPOSITORY), scope.node.getContext(CTX_BRANCH), {
