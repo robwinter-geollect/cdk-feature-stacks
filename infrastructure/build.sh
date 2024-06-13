@@ -3,6 +3,8 @@
 # Fail build on any error
 set -eu
 
+echo "PROJECT_DIR: $PROJECT_DIR"
+
 cd ${PROJECT_DIR/infrastructure}
 npm ci
 npm run lint
