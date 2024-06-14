@@ -10,6 +10,6 @@ ENV VIRTUAL_ENV=/home/geollect/venv
 RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-COPY --chown=geollect  ./projects/hello_world/ ./
+COPY --chown=geollect  ./ ./
 
 CMD ["python", "main.py"]
