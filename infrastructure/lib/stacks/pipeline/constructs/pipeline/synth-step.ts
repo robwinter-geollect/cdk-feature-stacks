@@ -31,6 +31,7 @@ export class SynthStep extends CodeBuildStep {
         BRANCH: scope.node.getContext(CTX_BRANCH),
         ENV_ID: scope.node.getContext(CTX_ENV_ID),
         PROJECT_DIR: projectDir,
+        AWS_ACCOUNT_ID: Stack.of(scope).account,
         ...(isFeatureEnvId(scope.node.getContext(CTX_ENV_ID)) && {
           [FEATURE_ENV_CONFIG_ENV_VAR_NAME]: JSON.stringify(getEnvConfig(scope)),
         }),

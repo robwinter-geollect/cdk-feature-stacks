@@ -17,6 +17,7 @@ export class ExamplePipeline extends CodePipeline {
     const environmentId = scope.node.getContext(CTX_ENV_ID);
     const product = scope.node.getContext(CTX_PRODUCT);
     const appName = scope.node.getContext(CTX_APP_NAME);
+    
 
     this.addStage(
       new ExampleDeploymentStage(this, `${environmentId}-${product}-${appName}-Deployment`, {
