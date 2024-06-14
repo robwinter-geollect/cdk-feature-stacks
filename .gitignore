@@ -2,8 +2,11 @@
 !jest.config.js
 *.d.ts
 node_modules
-.husky*
+poetry.lock
+launch.json
 
 # CDK asset staging directory
 .cdk.staging
-*/cdk.out/*
+cdk.out
+
+!lib/
