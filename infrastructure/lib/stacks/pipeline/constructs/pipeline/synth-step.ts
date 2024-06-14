@@ -11,7 +11,7 @@ const projectDir = path.join('infrastructure');
 
 const createSourceConnection = (scope: Construct) =>
   CodePipelineSource.connection(scope.node.getContext(CTX_REPOSITORY), scope.node.getContext(CTX_BRANCH), {
-    // Created using the AWS console
+    // Created using the AWS console  
     connectionArn: Arn.format(
       {
         service: 'codestar-connections',
